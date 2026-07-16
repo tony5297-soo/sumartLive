@@ -1,0 +1,208 @@
+/* SUMART shared visual foundation.
+   Loaded after page styles so legacy pages can share one palette without
+   changing their markup or behaviour. */
+:root {
+  color-scheme: light;
+  --sumart-primary: #ff3b5c;
+  --sumart-primary-hover: #d62845;
+  --sumart-ink: #171827;
+  --sumart-bg: #f8f6f3;
+  --sumart-surface: #ffffff;
+  --sumart-surface-muted: #f3f4f6;
+  --sumart-text: #171821;
+  --sumart-text-muted: #667085;
+  --sumart-border: #e6e8ec;
+  --sumart-gold: #ffb800;
+  --sumart-success: #00a862;
+  --sumart-info: #356fe0;
+  --sumart-purple: #6d3bd1;
+  --sumart-radius-sm: 14px;
+  --sumart-radius-md: 20px;
+  --sumart-radius-lg: 28px;
+  --sumart-shadow-sm: 0 8px 24px rgba(23, 24, 39, .07);
+  --sumart-shadow-md: 0 18px 48px rgba(23, 24, 39, .11);
+
+  /* Legacy aliases used throughout the standalone pages. */
+  --red: var(--sumart-primary);
+  --red-dark: var(--sumart-primary-hover);
+  --navy: var(--sumart-ink);
+  --navy2: #111827;
+  --gold: var(--sumart-gold);
+  --green: var(--sumart-success);
+  --blue: var(--sumart-info);
+  --purple: var(--sumart-purple);
+  --bg: var(--sumart-bg);
+  --text: var(--sumart-text);
+  --muted: var(--sumart-text-muted);
+  --line: var(--sumart-border);
+  --card: var(--sumart-surface);
+  --radius: var(--sumart-radius-lg);
+  --soft: var(--sumart-shadow-sm);
+  --shadow: var(--sumart-shadow-md);
+  --s9-red: var(--sumart-primary);
+  --s9-navy: var(--sumart-ink);
+  --s9-gold: var(--sumart-gold);
+  --s9-line: var(--sumart-border);
+  --v501-red: var(--sumart-primary);
+  --v501-navy: var(--sumart-ink);
+  --v501-gold: var(--sumart-gold);
+  --v501-green: var(--sumart-success);
+  --v501-purple: var(--sumart-purple);
+}
+
+html {
+  background: var(--sumart-bg);
+}
+
+body {
+  color: var(--sumart-text);
+  background-color: var(--sumart-bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  color: #fff;
+  background: var(--sumart-primary-hover);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid rgba(214, 40, 69, .34);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* 2026 visual refinement
+   Keep SUMART's strong pink/navy identity, while giving products and primary
+   actions more room to lead. These rules are presentation-only: no layout,
+   visibility, pointer-event, or interaction state is changed here. */
+:root {
+  --sumart-bg: #faf9f7;
+  --sumart-surface-muted: #f5f5f4;
+  --sumart-border: #e8e7e4;
+  --sumart-shadow-sm: 0 6px 18px rgba(23, 24, 39, .055);
+  --sumart-shadow-md: 0 14px 38px rgba(23, 24, 39, .09);
+}
+
+/* Quiet everyday surfaces; promotional heroes and AI feature panels retain
+   their intentional dark/expressive treatment. */
+html body :is(
+  .card,
+  .product-card,
+  .premium-card,
+  .host-card,
+  .insight-card,
+  .panel,
+  .compare,
+  .sumart-cart-item,
+  .sumart-cart-summary
+) {
+  border-color: var(--sumart-border) !important;
+  box-shadow: var(--sumart-shadow-sm) !important;
+}
+
+html body :is(
+  .card,
+  .product-card,
+  .premium-card,
+  .host-card,
+  .insight-card,
+  .sumart-cart-item
+):hover {
+  box-shadow: var(--sumart-shadow-md) !important;
+}
+
+/* Reserve filled brand colour for the main action. Ghost and utility actions
+   become calmer neutral controls. */
+html body :is(
+  .btn.ghost,
+  .btn.secondary,
+  .sumart-cart-btn,
+  .sumart-s9-chip,
+  .sumart-v51-chip,
+  .prompt-chip,
+  .filter,
+  .sumart-coupon-option
+) {
+  background: var(--sumart-surface) !important;
+  background-image: none !important;
+  border-color: var(--sumart-border) !important;
+  color: var(--sumart-ink) !important;
+  box-shadow: none !important;
+}
+
+html body :is(
+  .btn.ghost,
+  .btn.secondary,
+  .sumart-cart-btn,
+  .sumart-s9-chip,
+  .sumart-v51-chip,
+  .prompt-chip,
+  .filter,
+  .sumart-coupon-option
+):hover {
+  background: #fff5f6 !important;
+  border-color: rgba(255, 59, 92, .32) !important;
+  color: var(--sumart-primary-hover) !important;
+}
+
+/* Supporting labels should inform without competing with prices and CTAs. */
+html body :is(
+  .chip,
+  .deal-chip,
+  .prod-badge,
+  .ai-badge,
+  .sumart-cart-tags span,
+  .summary-tags span
+) {
+  background: #fff3f5 !important;
+  background-image: none !important;
+  color: var(--sumart-primary-hover) !important;
+  box-shadow: none !important;
+}
+
+/* Floating utilities remain discoverable, but no longer look like additional
+   primary calls to action. Cart controls keep their original brand fill. */
+html body :is(
+  .sumart-s9-float-btn:not(.cart),
+  .sumart-v4134-float-btn:not(.cart),
+  .v501-dock-btn:not(.cart),
+  .sumart-v5011-dock-btn:not(.cart),
+  .v379-cta-btn:not(.cart)
+) {
+  background: rgba(255, 255, 255, .94) !important;
+  background-image: none !important;
+  border-color: rgba(23, 24, 39, .09) !important;
+  color: var(--sumart-ink) !important;
+  box-shadow: var(--sumart-shadow-sm) !important;
+}
+
+/* Animated sheen is effective on one showcase area, but repetitive across
+   ordinary cards. The animation itself is untouched for genuine hero panels. */
+html body :is(
+  .product-card,
+  .premium-card,
+  .host-card,
+  .insight-card,
+  .sumart-cart-item
+)::before {
+  animation: none !important;
+}
+
+/* Keep the active category distinct without reversing the label to white. */
+html body .sx-cat-link.is-current,
+html body .sx-category-panel .sx-cat-link.is-current {
+  background: linear-gradient(135deg, #fff0f3, #fff8fa) !important;
+  border-color: rgba(214, 40, 69, .24) !important;
+  color: #d62845 !important;
+  box-shadow: inset 0 0 0 2px rgba(214, 40, 69, .14), 0 7px 18px rgba(214, 40, 69, .10) !important;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "sumart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tony5297-soo/sumart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tony5297-soo/sumart/issues"
+  },
+  "homepage": "https://github.com/tony5297-soo/sumart#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}
