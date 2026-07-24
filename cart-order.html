@@ -760,7 +760,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     -ms-overflow-style:none!important;
     -webkit-overflow-scrolling:touch!important;
     overscroll-behavior-x:contain!important;
-    touch-action:pan-x!important;
+    touch-action:pan-x pan-y pinch-zoom!important;
   }
   .sx-category-scroll::-webkit-scrollbar{display:none!important}
   .sx-category-scroll .sx-cat-link{
@@ -1013,11 +1013,11 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
   @media (max-width: 768px), (pointer: coarse) {
     html {
       scroll-behavior: auto !important;
-      overflow-x: clip;
+      overflow-x: hidden;
     }
     body {
       min-height: 100%;
-      overflow-x: clip !important;
+      overflow-x: hidden !important;
       overscroll-behavior-x: none;
     }
     /* Do not repaint large blurred fixed/sticky layers during every touch frame. */

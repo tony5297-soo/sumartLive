@@ -38,3 +38,36 @@ for (const path of ['/cart-order.html', '/mypage.html']) {
     expect(errors, `브라우저 JavaScript 오류: ${errors.join(' | ')}`).toEqual([]);
   });
 }
+
+test('/cart-order.html 카테고리 영역에서 시작한 세로 스와이프가 페이지를 스크롤한다', async ({ page }) => {
+  await page.goto('/cart-order.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => window.scrollTo(0, 0));
+
+  const categoryScroller = page.locator('.sx-category-scroll').first();
+  const box = await categoryScroller.boundingBox();
+  expect(box).not.toBeNull();
+
+  const client = await page.context().newCDPSession(page);
+  const x = Math.round(box.x + box.width / 2);
+  const startY = Math.round(box.y + box.height / 2);
+
+  await client.send('Input.dispatchTouchEvent', {
+    type: 'touchStart',
+    touchPoints: [{ x, y: startY, id: 1, radiusX: 3, radiusY: 3, force: 1 }]
+  });
+
+  for (let distance = 30; distance <= 240; distance += 30) {
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x, y: startY - distance, id: 1, radiusX: 3, radiusY: 3, force: 1 }]
+    });
+    await page.waitForTimeout(16);
+  }
+
+  await client.send('Input.dispatchTouchEvent', {
+    type: 'touchEnd',
+    touchPoints: []
+  });
+
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(40);
+});
