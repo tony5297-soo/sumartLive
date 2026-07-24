@@ -360,29 +360,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <button aria-expanded="false" aria-label="전체 카테고리 열기" class="sx-category-toggle" type="button">⌄</button>
 </div>
 <div class="sx-category-panel" hidden=""><a class="sx-cat-link" href="today-deal.html"><span>🔥</span><b>오늘딜</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%8C%A8%EC%85%98"><span>👗</span><b>패션</b></a><a class="sx-cat-link" href="ai-search.html?category=%EB%A6%AC%EB%B9%99"><span>🏠</span><b>리빙</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B0%80%EC%A0%84"><span>📱</span><b>가전</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8B%9D%ED%92%88"><span>🔍</span><b>식품</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9C%A1%EC%95%84"><span>🧑</span><b>육아</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8A%A4%ED%8F%AC%EC%B8%A0"><span>⛺</span><b>스포츠</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9E%90%EB%8F%99%EC%B0%A8"><span>🚙</span><b>자동차</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%97%AC%ED%96%89"><span>✈️</span><b>여행</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%95%B4%EC%99%B8"><span>📦</span><b>해외</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B1%B4%EA%B0%95"><span>💊</span><b>건강</b></a><a class="sx-cat-link" href="coupon.html"><span>🎟️</span><b>쿠폰</b></a></div>
-</nav><main class="wrap"><div class="shell"><section class="intro"><div>SUMART ACCOUNT</div><h1>네이버 계정으로 빠르게 시작하세요</h1><p>별도의 비밀번호 입력 없이 네이버 인증으로 SUMART 서비스를 이용할 수 있습니다.</p></section><section class="card"><div class="provider naver">N</div><h2>네이버로 계속하기</h2><p class="desc">네이버 계정으로 SUMART에 안전하게 로그인합니다.</p><div class="consent"><label><input checked="" disabled="" type="checkbox"/> <span>필수 프로필 정보 제공</span></label><label><input checked="" type="checkbox"/> <span>이메일 주소 제공 동의</span></label><label><input type="checkbox"/> <span>맞춤 쇼핑 혜택 수신 동의</span></label></div><button class="btn" id="go">네이버 계정으로 로그인</button><div class="sub"><a href="login.html">다른 방법으로 로그인</a></div><p class="note" id="result">실서비스에서는 각 사업자의 OAuth 인증 화면과 연결됩니다.</p></section></div></main><script>document.getElementById('go').onclick=function(){localStorage.setItem('sumartLoginProvider','네이버');localStorage.setItem('sumartLoggedIn','true');document.getElementById('result').textContent='네이버 간편로그인이 완료되었습니다. 마이페이지로 이동합니다.';setTimeout(()=>location.href='mypage.html',800);}</script><script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+</nav><main class="wrap"><div class="shell"><section class="intro"><div>SUMART ACCOUNT</div><h1>네이버 계정으로 빠르게 시작하세요</h1><p>별도의 비밀번호 입력 없이 네이버 인증으로 SUMART 서비스를 이용할 수 있습니다.</p></section><section class="card"><div class="provider naver">N</div><h2>네이버로 계속하기</h2><p class="desc">네이버 계정으로 SUMART에 안전하게 로그인합니다.</p><div class="consent"><label><input checked="" disabled="" type="checkbox"/> <span>필수 프로필 정보 제공</span></label><label><input checked="" type="checkbox"/> <span>이메일 주소 제공 동의</span></label><label><input type="checkbox"/> <span>맞춤 쇼핑 혜택 수신 동의</span></label></div><button class="btn" id="go">네이버 계정으로 로그인</button><div class="sub"><a href="login.html">다른 방법으로 로그인</a></div><p class="note" id="result">실서비스에서는 각 사업자의 OAuth 인증 화면과 연결됩니다.</p></section></div></main><script src="assets/login-provider.js"></script><script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){

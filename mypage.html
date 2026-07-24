@@ -990,6 +990,53 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 }
 </style>
 <link rel="stylesheet" href="sumart-theme.css">
+<!-- Mobile scroll stability: keep the main thread/compositor light on touch devices. -->
+<style id="sumart-mobile-scroll-stability">
+  @media (max-width: 768px), (pointer: coarse) {
+    html {
+      scroll-behavior: auto !important;
+      overflow-x: clip;
+    }
+    body {
+      min-height: 100%;
+      overflow-x: clip !important;
+      overscroll-behavior-x: none;
+    }
+    /* Do not repaint large blurred fixed/sticky layers during every touch frame. */
+    header,
+    .sumart-bottom-nav,
+    .sumart-mobile-paybar,
+    [class*="floating"],
+    [class*="launcher"],
+    [class*="tooltray"],
+    [class*="dock"],
+    [class*="toast"],
+    [class*="panel"],
+    [class*="modal"],
+    [class*="assistant"],
+    [class*="compare"] {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+    /* Initial reveal/sweep animations compete with the first touch scroll. */
+    [data-reveal],
+    .v501-reveal,
+    .v501-reveal.is-visible {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .hero::before,
+    .hero::after,
+    .ai-panel::before,
+    .sx45-hero::before,
+    .sx45-ai-coach::after,
+    [class*="shimmer"]::before,
+    [class*="sweep"]::before {
+      animation: none !important;
+    }
+  }
+</style>
 </head><body><div class="topbar">🎉 신규회원 <strong>10% 쿠폰</strong> · AI 추천 특가 · 오늘 출발 상품 모음</div><header><div class="header-inner"><a class="logo" href="index.html"><span class="logo-badge">S</span><span>수<span>마트</span></span></a><nav class="nav"><a class="" href="index.html">홈</a><a class="" href="ai-search.html">AI검색</a><a class="" href="product-detail.html">상품상세</a><a class="" href="live.html">LIVE</a><a class="" href="cart-order.html">장바구니</a><a class="active" href="mypage.html">MY</a><a class="" href="admin.html">Admin</a></nav><div aria-label="사용자 메뉴" class="sx-header-actions">
 <a aria-label="찜 목록" class="sx-header-icon" href="wishlist.html">
 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21.3l7.8-7.8 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
@@ -1006,7 +1053,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <button aria-expanded="false" aria-label="전체 카테고리 열기" class="sx-category-toggle" type="button">⌄</button>
 </div>
 <div class="sx-category-panel" hidden=""><a class="sx-cat-link" href="today-deal.html"><span>🔥</span><b>오늘딜</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%8C%A8%EC%85%98"><span>👗</span><b>패션</b></a><a class="sx-cat-link" href="ai-search.html?category=%EB%A6%AC%EB%B9%99"><span>🏠</span><b>리빙</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B0%80%EC%A0%84"><span>📱</span><b>가전</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8B%9D%ED%92%88"><span>🔍</span><b>식품</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9C%A1%EC%95%84"><span>🧑</span><b>육아</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8A%A4%ED%8F%AC%EC%B8%A0"><span>⛺</span><b>스포츠</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9E%90%EB%8F%99%EC%B0%A8"><span>🚙</span><b>자동차</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%97%AC%ED%96%89"><span>✈️</span><b>여행</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%95%B4%EC%99%B8"><span>📦</span><b>해외</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B1%B4%EA%B0%95"><span>💊</span><b>건강</b></a><a class="sx-cat-link" href="coupon.html"><span>🎟️</span><b>쿠폰</b></a></div>
-</nav><section class="hero"><img alt="" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"/><div class="hero-inner"><span class="eyebrow">SUMART 2027 AI COMMERCE</span><h1>나를 이해하는<br/><em>My SUMART</em></h1><p>주문, 쿠폰, 최근 본 상품과 AI 추천이 개인화된 홈처럼 이어집니다.</p></div></section><main class="wrap mypage-v42" data-mypage-root="">
+</nav><section class="hero"><img alt="" decoding="async" fetchpriority="high" height="900" sizes="100vw" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=1200&amp;q=78" srcset="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=720&amp;q=72 720w, https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=1200&amp;q=78 1200w, https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=1600&amp;q=82 1600w" width="1600"/><div class="hero-inner"><span class="eyebrow">SUMART 2027 AI COMMERCE</span><h1>나를 이해하는<br/><em>My SUMART</em></h1><p>주문, 쿠폰, 최근 본 상품과 AI 추천이 개인화된 홈처럼 이어집니다.</p></div></section><main class="wrap mypage-v42" data-mypage-root="">
 <section class="my-hero-dashboard">
 <div class="my-welcome">
 <span class="my-tier">👑 VIP GOLD · SUMART PRIME</span>
@@ -1089,12 +1136,9 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <div class="mypage-modal" data-modal="coupon"><div class="mypage-modal-card"><div class="modal-head"><h3>쿠폰 내역</h3><button class="modal-close" data-close-modal="">×</button></div><div class="coupon-list"><article class="coupon-card ai"><div><b>🤖 AI 추천 VIP 15%</b><p>가전/디지털 10만원 이상 · 오늘 가장 절약 효과가 큽니다.</p></div><button class="mini-btn" data-toast="AI 추천 쿠폰이 적용되었습니다">적용</button></article><article class="coupon-card"><div><b>WELCOME 10%</b><p>신규/복귀 회원 전용 · 최대 20,000원 할인</p></div><button class="mini-btn ghost" data-toast="쿠폰이 적용되었습니다">적용</button></article><article class="coupon-card"><div><b>무료배송 쿠폰</b><p>3만원 이상 구매 시 배송비 무료</p></div><button class="mini-btn ghost" data-toast="무료배송 쿠폰이 적용되었습니다">적용</button></article><article class="coupon-card"><div><b>LIVE 전용 7%</b><p>라이브 방송 상품 전용 · 방송 종료 전까지</p></div><button class="mini-btn ghost" data-toast="LIVE 쿠폰이 적용되었습니다">적용</button></article></div></div></div>
 <div class="mypage-modal" data-modal="point"><div class="mypage-modal-card"><div class="modal-head"><h3>포인트 내역</h3><button class="modal-close" data-close-modal="">×</button></div><div class="coupon-list"><article class="coupon-card ai"><div><b>보유 포인트 285,400P</b><p>다음 결제에서 최대 50,000P까지 사용 가능하며, AI가 예상 적립 혜택을 계산합니다.</p></div><button class="mini-btn" onclick="location.href='cart-order.html'">장바구니에서 사용</button></article><article class="coupon-card"><div><b>7월 구매 적립</b><p>Galaxy Buds4 Pro 구매 적립 예정 · 2,790P</p></div><span class="mini-btn ghost">적립예정</span></article><article class="coupon-card"><div><b>리뷰 작성 보상</b><p>프리미엄 커피머신 리뷰 작성 시 2,000P 추가 적립</p></div><button class="mini-btn ghost" data-toast="리뷰 작성 화면으로 이동합니다">리뷰 쓰기</button></article></div></div></div>
 <div class="mypage-modal" data-modal="ai"><div class="mypage-modal-card"><div class="modal-head"><h3>AI 추천 상세</h3><button class="modal-close" data-close-modal="">×</button></div><div class="ai-detail"><div class="my-coach"><div class="bot">🤖</div><div><b>추천 기준</b><p>최근 OLED TV, 헤드폰, 노트북을 많이 조회했고 가전 쿠폰 사용 가능성이 높아 AI가 고가 가전 중심으로 추천했습니다.</p></div></div><div data-ai-rec-list=""></div></div></div></div>
-<footer class="footer"><div class="footer-inner"><div><b style="color:#fff;font-size:22px">SUMART</b><p style="margin-top:8px">Smart Choice, Smarter Life. AI가 더 좋은 선택을 돕습니다.</p></div><div>Premium AI Commerce Platform 1.0</div></div></footer><div class="fab"><a href="cart-order.html">🛒</a><button onclick="scrollTo({top:0,behavior:'smooth'})">↑</button></div><script>
+<footer class="footer"><div class="footer-inner"><div><b style="color:#fff;font-size:22px">SUMART</b><p style="margin-top:8px">Smart Choice, Smarter Life. AI가 더 좋은 선택을 돕습니다.</p></div><div>Premium AI Commerce Platform 1.0</div></div></footer><div class="fab"><a href="cart-order.html">🛒</a><button onclick="scrollTo({top:0,behavior:'smooth'})">↑</button></div><script src="assets/ui-common.js"></script>
+<script>
 (function(){
- const toast=document.createElement('div');toast.className='toast';document.body.appendChild(toast);window.sumartToast=function(t){toast.textContent=t;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),1500)};
- document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();sumartToast(b.dataset.toast)}));
- document.querySelectorAll('[data-link]').forEach(el=>{el.style.cursor='pointer';el.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.href=el.dataset.link})});
- setInterval(()=>document.querySelectorAll('[data-live-num]').forEach(el=>{let n=parseInt(el.textContent.replace(/,/g,''),10)||0;n+=Math.floor(Math.random()*7);el.textContent=n.toLocaleString()}),2600);
 })();
 </script>
 <script id="sumart-commercial-polish-v3-js">
@@ -1242,7 +1286,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     if(all) all.checked=cart.length>0 && cart.every(i=>i.checked);
     if(empty) empty.classList.toggle('show', cart.length===0);
     if(list){
-      list.innerHTML=cart.map(i=>`<article class="sumart-cart-item" data-id="${i.id}"><input type="checkbox" class="sumart-item-check" ${i.checked?'checked':''} aria-label="${i.name} 선택"><div class="sumart-cart-thumb"><img src="${i.img}" alt="${i.name}"></div><div class="sumart-cart-info"><h3>${i.name}</h3><p class="sumart-cart-meta">${i.meta||''}</p><div class="sumart-cart-tags">${(i.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div></div><div class="sumart-cart-control"><div class="sumart-cart-price"><small>${won((i.origin||i.price)*i.qty)}</small><b>${won(i.price*i.qty)}</b></div><div class="sumart-qty"><button type="button" data-qty="-">−</button><input value="${i.qty}" inputmode="numeric" aria-label="수량"><button type="button" data-qty="+">+</button></div><button type="button" class="sumart-remove">삭제</button></div></article>`).join('');
+      list.innerHTML=cart.map(i=>`<article class="sumart-cart-item" data-id="${i.id}"><input type="checkbox" class="sumart-item-check" ${i.checked?'checked':''} aria-label="${i.name} 선택"><div class="sumart-cart-thumb"><img src="${i.img}" alt="${i.name}" loading="lazy" decoding="async"></div><div class="sumart-cart-info"><h3>${i.name}</h3><p class="sumart-cart-meta">${i.meta||''}</p><div class="sumart-cart-tags">${(i.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div></div><div class="sumart-cart-control"><div class="sumart-cart-price"><small>${won((i.origin||i.price)*i.qty)}</small><b>${won(i.price*i.qty)}</b></div><div class="sumart-qty"><button type="button" data-qty="-">−</button><input value="${i.qty}" inputmode="numeric" aria-label="수량"><button type="button" data-qty="+">+</button></div><button type="button" class="sumart-remove">삭제</button></div></article>`).join('');
     }
     const c=calc(cart);
     const set=(sel,val)=>root.querySelectorAll(sel).forEach(el=>el.textContent=val);
@@ -1301,13 +1345,13 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     ['프리미엄 커피머신','139,000원','https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=400&q=80']
   ];
   function toast(t){ if(window.sumartToast) window.sumartToast(t); else alert(t); }
-  function card([name,price,img]){return `<article class="mini-product" data-link="product-detail.html"><img src="${img}" alt="${name}"><div><b>${name}</b><span>${price}</span><div class="mini-row"><button class="mini-btn" data-toast="장바구니에 담겼습니다">담기</button><button class="mini-btn ghost" onclick="location.href='product-detail.html'">보기</button></div></div></article>`}
+  function card([name,price,img]){return `<article class="mini-product" data-link="product-detail.html"><img src="${img}" alt="${name}" loading="lazy" decoding="async"><div><b>${name}</b><span>${price}</span><div class="mini-row"><button class="mini-btn" data-toast="장바구니에 담겼습니다">담기</button><button class="mini-btn ghost" onclick="location.href='product-detail.html'">보기</button></div></div></article>`}
   function renderOrders(status='paid'){
     const panel=document.querySelector('[data-order-detail]'); if(!panel) return;
     const label={paid:'결제완료',ready:'배송준비중',shipping:'배송중',done:'배송완료'}[status];
     const desc={paid:'결제가 완료된 주문만 아래에 표시합니다.',ready:'배송을 준비 중인 주문만 아래에 표시합니다.',shipping:'현재 이동 중인 배송 건만 아래에 표시합니다.',done:'배송이 완료된 주문만 아래에 표시합니다.'}[status];
     const list=orders[status]||[];
-    const rows=list.map(o=>`<article class="order-item" data-order-status="${status}"><img src="${o[3]}" alt="${o[0]}"><div><h4>${o[0]}</h4><p>${o[1]}<br>${o[2]}</p></div><div class="order-actions"><button type="button" class="mini-btn" data-toast="${label} 주문상세를 아래 영역에서 확인합니다">주문상세</button><button type="button" class="mini-btn ghost" data-toast="${label} 배송조회 정보를 확인했습니다">배송조회</button></div></article>`).join('') || '<div class="order-empty">해당 상태의 주문이 없습니다.</div>';
+    const rows=list.map(o=>`<article class="order-item" data-order-status="${status}"><img src="${o[3]}" alt="${o[0]}" loading="lazy" decoding="async"><div><h4>${o[0]}</h4><p>${o[1]}<br>${o[2]}</p></div><div class="order-actions"><button type="button" class="mini-btn" data-toast="${label} 주문상세를 아래 영역에서 확인합니다">주문상세</button><button type="button" class="mini-btn ghost" data-toast="${label} 배송조회 정보를 확인했습니다">배송조회</button></div></article>`).join('') || '<div class="order-empty">해당 상태의 주문이 없습니다.</div>';
     panel.innerHTML=`<div class="order-inline-head"><div><h3>${label} 상세</h3><p>${desc}</p></div><span class="order-inline-count">${list.length}</span></div>${rows}`;
     panel.classList.remove('slide-in'); void panel.offsetWidth; panel.classList.add('slide-in');
   }
@@ -1320,7 +1364,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     if(wish) wish.innerHTML=wishData.map(card).join('');
     if(recent) recent.innerHTML=recentData.map(card).join('');
     if(rec) rec.innerHTML=products.map(card).join('');
-    if(ai) ai.innerHTML=products.map(p=>`<article class="ai-rec"><img src="${p[2]}" alt="${p[0]}"><div><b>${p[0]}</b><p>${p[1]} · 최근 조회와 찜 데이터를 기준으로 추천했습니다.</p><button class="mini-btn" onclick="location.href='product-detail.html'">상품보기</button></div></article>`).join('');
+    if(ai) ai.innerHTML=products.map(p=>`<article class="ai-rec"><img src="${p[2]}" alt="${p[0]}" loading="lazy" decoding="async"><div><b>${p[0]}</b><p>${p[1]} · 최근 조회와 찜 데이터를 기준으로 추천했습니다.</p><button class="mini-btn" onclick="location.href='product-detail.html'">상품보기</button></div></article>`).join('');
     document.querySelectorAll('[data-wish-count]').forEach(el=>el.textContent=String(wishData.length)+'개');
   }
   document.addEventListener('click',(ev)=>{
@@ -2955,7 +2999,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     document.querySelectorAll('.sumart-v51-cart-smart,.sumart-v51-my-smart,.sumart-v51-coupon-smart').forEach(function(el){el.remove();});
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',cleanup); else cleanup();
-  setInterval(cleanup,600);
+  window.addEventListener('load',cleanup,{once:true});
 })();
 </script>
 
@@ -3054,29 +3098,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
   window.sumartUpdateHeaderCounts=update;
 })();
 </script>
-<script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+<script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){

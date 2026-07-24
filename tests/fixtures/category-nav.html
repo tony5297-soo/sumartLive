@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Category Nav Fixture</title>
+    <style>
+      .sx-category-nav { display: block; margin: 24px; }
+      .sx-category-panel { display: block; margin-top: 8px; border: 1px solid #ddd; padding: 8px; }
+      .sx-category-panel[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <nav class="sx-category-nav">
+      <button type="button" class="sx-category-menu-btn" aria-expanded="false" aria-label="전체 카테고리 열기">메뉴보기</button>
+      <button type="button" class="sx-category-toggle" aria-expanded="false" aria-label="전체 카테고리 열기">⌄</button>
+      <div class="sx-category-panel" hidden>
+        <a href="/coupon.html">쿠폰</a>
+      </div>
+    </nav>
+    <script src="../../assets/category-nav.js"></script>
+  </body>
+</html>

@@ -2453,29 +2453,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
   window.sumartUpdateHeaderCounts=update;
 })();
 </script>
-<script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+<script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){

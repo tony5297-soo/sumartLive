@@ -360,29 +360,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <button aria-expanded="false" aria-label="전체 카테고리 열기" class="sx-category-toggle" type="button">⌄</button>
 </div>
 <div class="sx-category-panel" hidden=""><a class="sx-cat-link" href="today-deal.html"><span>🔥</span><b>오늘딜</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%8C%A8%EC%85%98"><span>👗</span><b>패션</b></a><a class="sx-cat-link" href="ai-search.html?category=%EB%A6%AC%EB%B9%99"><span>🏠</span><b>리빙</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B0%80%EC%A0%84"><span>📱</span><b>가전</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8B%9D%ED%92%88"><span>🔍</span><b>식품</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9C%A1%EC%95%84"><span>🧑</span><b>육아</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8A%A4%ED%8F%AC%EC%B8%A0"><span>⛺</span><b>스포츠</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9E%90%EB%8F%99%EC%B0%A8"><span>🚙</span><b>자동차</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%97%AC%ED%96%89"><span>✈️</span><b>여행</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%95%B4%EC%99%B8"><span>📦</span><b>해외</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B1%B4%EA%B0%95"><span>💊</span><b>건강</b></a><a class="sx-cat-link" href="coupon.html"><span>🎟️</span><b>쿠폰</b></a></div>
-</nav><main class="wrap"><div class="shell"><section class="intro"><div>SUMART ACCOUNT</div><h1>더 스마트한 쇼핑의 시작</h1><p>회원 가입 후 쿠폰, 찜, 최근 본 상품과 AI 추천을 한 번에 관리할 수 있습니다.</p></section><section class="card"><h2>회원가입</h2><p class="desc">SUMART 회원이 되어 AI 맞춤 혜택을 시작하세요.</p><form id="f"><div class="field"><label>이메일</label><input placeholder="example@email.com" required="" type="email"/></div><div class="field"><label>비밀번호</label><input minlength="8" placeholder="영문·숫자 포함 8자 이상" required="" type="password"/></div><div class="field"><label>이름</label><input placeholder="이름을 입력하세요" required=""/></div><div class="field"><label>휴대전화번호</label><input placeholder="010-0000-0000" required=""/></div><div class="consent"><label><input required="" type="checkbox"/> <span>[필수] 이용약관 및 개인정보 처리방침에 동의합니다.</span></label><label><input type="checkbox"/> <span>[선택] 맞춤 혜택 및 마케팅 정보 수신에 동의합니다.</span></label></div><button class="btn">회원가입 완료</button></form><p class="note" id="result"></p></section></div></main><script>document.getElementById('f').onsubmit=function(e){e.preventDefault();localStorage.setItem('sumartMember','true');document.getElementById('result').textContent='회원가입이 완료되었습니다. 잠시 후 로그인 화면으로 이동합니다.';setTimeout(()=>location.href='login.html',900);}</script><script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+</nav><main class="wrap"><div class="shell"><section class="intro"><div>SUMART ACCOUNT</div><h1>더 스마트한 쇼핑의 시작</h1><p>회원 가입 후 쿠폰, 찜, 최근 본 상품과 AI 추천을 한 번에 관리할 수 있습니다.</p></section><section class="card"><h2>회원가입</h2><p class="desc">SUMART 회원이 되어 AI 맞춤 혜택을 시작하세요.</p><form id="f" data-form-action="signup"><div class="field"><label>이메일</label><input placeholder="example@email.com" required="" type="email"/></div><div class="field"><label>비밀번호</label><input minlength="8" placeholder="영문·숫자 포함 8자 이상" required="" type="password"/></div><div class="field"><label>이름</label><input placeholder="이름을 입력하세요" required=""/></div><div class="field"><label>휴대전화번호</label><input placeholder="010-0000-0000" required=""/></div><div class="consent"><label><input required="" type="checkbox"/> <span>[필수] 이용약관 및 개인정보 처리방침에 동의합니다.</span></label><label><input type="checkbox"/> <span>[선택] 맞춤 혜택 및 마케팅 정보 수신에 동의합니다.</span></label></div><button class="btn">회원가입 완료</button></form><p class="note" id="result"></p></section></div></main><script src="assets/form-actions.js"></script><script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){

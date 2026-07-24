@@ -732,19 +732,17 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <div class="fab"><a href="cart-order.html" title="장바구니">🛒</a><button onclick="scrollTo({top:0,behavior:'smooth'})" title="TOP">↑</button></div>
 <script>
 (function(){
- const toast=document.createElement('div');toast.className='toast';document.body.appendChild(toast);window.sumartToast=function(t){toast.textContent=t;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),1600)};
- document.querySelectorAll('[data-toast]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();sumartToast(el.dataset.toast)}));
  const fmt=(n,type,prefix='',suffix='')=>{if(type==='money'){ if(n>=100000000) return prefix+(n/100000000).toFixed(1).replace('.0','')+'억'+suffix; if(n>=10000) return prefix+(n/10000).toFixed(0)+'만'+suffix;} if(type==='comma') return prefix+n.toLocaleString()+suffix; return prefix+n+suffix};
  document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count; const type=el.dataset.format||''; const prefix=el.dataset.prefix||''; const suffix=el.dataset.suffix||''; let start=0; const step=Math.max(1,Math.ceil(target/42)); const timer=setInterval(()=>{start+=step;if(start>=target){start=target;clearInterval(timer)} el.textContent=fmt(start,type,prefix,suffix)},22)});
- document.querySelectorAll('.chip-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.chip-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.bar').forEach((bar,i)=>{const base=[58,68,45,78,92,86,73][i]; const add=btn.dataset.range==='week'?8:btn.dataset.range==='month'?14:0; bar.style.height=Math.min(96,base+add-(i%3)*5)+'%'});sumartToast(btn.textContent+' 데이터로 전환했습니다.')}));
- document.querySelectorAll('.toggle').forEach(t=>t.addEventListener('click',()=>{t.classList.toggle('on');sumartToast(t.classList.contains('on')?'노출을 활성화했습니다.':'노출을 비활성화했습니다.')}));
+ document.querySelectorAll('.chip-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.chip-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.bar').forEach((bar,i)=>{const base=[58,68,45,78,92,86,73][i]; const add=btn.dataset.range==='week'?8:btn.dataset.range==='month'?14:0; bar.style.height=Math.min(96,base+add-(i%3)*5)+'%'});if(window.sumartToast) window.sumartToast(btn.textContent+' 데이터로 전환했습니다.')}));
+ document.querySelectorAll('.toggle').forEach(t=>t.addEventListener('click',()=>{t.classList.toggle('on');if(window.sumartToast) window.sumartToast(t.classList.contains('on')?'노출을 활성화했습니다.':'노출을 비활성화했습니다.')}));
  const sideLinks=document.querySelectorAll('.side a'); sideLinks.forEach(a=>a.addEventListener('click',()=>{sideLinks.forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
  const sumiBtn=document.getElementById('sumiBtn'), panel=document.getElementById('sumiPanel'), input=document.getElementById('sumiInput'), send=document.getElementById('sumiSend');
  function answer(q){const msg=document.createElement('div');msg.className='sumi-msg';msg.textContent='“'+q+'” 기준으로 분석했습니다. 현재는 AI 추천 상품 노출과 LIVE 쿠폰을 우선 운영하는 것이 가장 효율적입니다.';panel.querySelector('.sumi-body').appendChild(msg);panel.querySelector('.sumi-body').scrollTop=999;}
- sumiBtn.addEventListener('click',()=>panel.classList.toggle('open'));
+ if(sumiBtn && panel) sumiBtn.addEventListener('click',()=>panel.classList.toggle('open'));
  document.querySelectorAll('[data-sumi]').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.sumi)));
- send.addEventListener('click',()=>{if(input.value.trim()){answer(input.value.trim());input.value=''}});
- input.addEventListener('keydown',e=>{if(e.key==='Enter')send.click()});
+ if(send && input) send.addEventListener('click',()=>{if(input.value.trim()){answer(input.value.trim());input.value=''}});
+ if(input) input.addEventListener('keydown',e=>{if(e.key==='Enter')send.click()});
  setInterval(()=>document.querySelectorAll('[data-live-num], .command-metric b[data-format="comma"]').forEach(el=>{if(el.dataset.count){return} let n=parseInt(el.textContent.replace(/,/g,''),10)||23581; n+=Math.floor(Math.random()*9); el.textContent=n.toLocaleString()}),2600);
 })();
 </script>
@@ -2347,29 +2345,7 @@ html,body{scroll-behavior:auto!important}
   window.addEventListener('load',cleanOnce,{once:true});
 })();
 </script>
-<script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+<script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){

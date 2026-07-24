@@ -927,11 +927,9 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 <button aria-expanded="false" aria-label="전체 카테고리 열기" class="sx-category-toggle" type="button">⌄</button>
 </div>
 <div class="sx-category-panel" hidden=""><a class="sx-cat-link" href="today-deal.html"><span>🔥</span><b>오늘딜</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%8C%A8%EC%85%98"><span>👗</span><b>패션</b></a><a class="sx-cat-link" href="ai-search.html?category=%EB%A6%AC%EB%B9%99"><span>🏠</span><b>리빙</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B0%80%EC%A0%84"><span>📱</span><b>가전</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8B%9D%ED%92%88"><span>🔍</span><b>식품</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9C%A1%EC%95%84"><span>🧑</span><b>육아</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%8A%A4%ED%8F%AC%EC%B8%A0"><span>⛺</span><b>스포츠</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%9E%90%EB%8F%99%EC%B0%A8"><span>🚙</span><b>자동차</b></a><a class="sx-cat-link" href="ai-search.html?category=%EC%97%AC%ED%96%89"><span>✈️</span><b>여행</b></a><a class="sx-cat-link" href="ai-search.html?category=%ED%95%B4%EC%99%B8"><span>📦</span><b>해외</b></a><a class="sx-cat-link" href="ai-search.html?category=%EA%B1%B4%EA%B0%95"><span>💊</span><b>건강</b></a><a class="sx-cat-link" href="coupon.html"><span>🎟️</span><b>쿠폰</b></a></div>
-</nav><section class="hero"><img alt="" src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"/><div class="hero-inner"><span class="eyebrow">SUMART 2027 AI COMMERCE</span><h1>좋은 선택이 완료되었습니다<br/><em>Thank You</em></h1><p>주문 이후에도 배송, 추천, 재구매까지 AI가 이어서 돕습니다.</p></div></section><main class="wrap"><section class="ai-panel" style="text-align:center"><h2 style="font-size:42px">주문이 완료되었습니다</h2><p>AI가 선택한 최적 혜택으로 84,700원을 절약했습니다.</p><div class="metric"><div><small>주문번호</small><b>SM20270707</b></div><div><small>도착예정</small><b>내일</b></div><div><small>적립</small><b>12,900P</b></div></div><br/><button class="btn" onclick="location.href='mypage.html'">주문내역 보기</button></section></main><footer class="footer"><div class="footer-inner"><div><b style="color:#fff;font-size:22px">SUMART</b><p style="margin-top:8px">Smart Choice, Smarter Life. AI가 더 좋은 선택을 돕습니다.</p></div><div>Premium AI Commerce Platform 1.0</div></div></footer><div class="fab"><a href="cart-order.html">🛒</a><button onclick="scrollTo({top:0,behavior:'smooth'})">↑</button></div><script>
+</nav><section class="hero"><img alt="" src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"/><div class="hero-inner"><span class="eyebrow">SUMART 2027 AI COMMERCE</span><h1>좋은 선택이 완료되었습니다<br/><em>Thank You</em></h1><p>주문 이후에도 배송, 추천, 재구매까지 AI가 이어서 돕습니다.</p></div></section><main class="wrap"><section class="ai-panel" style="text-align:center"><h2 style="font-size:42px">주문이 완료되었습니다</h2><p>AI가 선택한 최적 혜택으로 84,700원을 절약했습니다.</p><div class="metric"><div><small>주문번호</small><b>SM20270707</b></div><div><small>도착예정</small><b>내일</b></div><div><small>적립</small><b>12,900P</b></div></div><br/><button class="btn" onclick="location.href='mypage.html'">주문내역 보기</button></section></main><footer class="footer"><div class="footer-inner"><div><b style="color:#fff;font-size:22px">SUMART</b><p style="margin-top:8px">Smart Choice, Smarter Life. AI가 더 좋은 선택을 돕습니다.</p></div><div>Premium AI Commerce Platform 1.0</div></div></footer><div class="fab"><a href="cart-order.html">🛒</a><button onclick="scrollTo({top:0,behavior:'smooth'})">↑</button></div><script src="assets/ui-common.js"></script>
+<script>
 (function(){
- const toast=document.createElement('div');toast.className='toast';document.body.appendChild(toast);window.sumartToast=function(t){toast.textContent=t;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),1500)};
- document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();sumartToast(b.dataset.toast)}));
- document.querySelectorAll('[data-link]').forEach(el=>{el.style.cursor='pointer';el.addEventListener('click',e=>{if(e.target.closest('button,a'))return;location.href=el.dataset.link})});
  setInterval(()=>document.querySelectorAll('[data-live-num]').forEach(el=>{let n=parseInt(el.textContent.replace(/,/g,''),10)||0;n+=Math.floor(Math.random()*7);el.textContent=n.toLocaleString()}),2600);
 })();
 </script>
@@ -2823,29 +2821,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
   window.sumartUpdateHeaderCounts=update;
 })();
 </script>
-<script id="sumart-v34-category-nav-script">
-(function(){
-  function initCategoryNav(){
-    document.querySelectorAll('.sx-category-nav').forEach(function(nav){
-      if(nav.dataset.ready==='1') return;
-      nav.dataset.ready='1';
-      var btn=nav.querySelector('.sx-category-toggle');
-      var panel=nav.querySelector('.sx-category-panel');
-      if(!btn||!panel) return;
-      btn.addEventListener('click',function(){
-        var open=btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded',String(!open));
-        btn.setAttribute('aria-label',open?'전체 카테고리 열기':'전체 카테고리 닫기');
-        panel.hidden=open;
-      });
-      panel.addEventListener('click',function(e){
-        if(e.target.closest('a')){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-      });
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCategoryNav); else initCategoryNav();
-})();
-</script>
+<script src="assets/category-nav.js"></script>
 <script id="sumart-v35-left-category-menu-script">
 (function(){
   function initLeftCategoryMenu(){
