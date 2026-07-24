@@ -4324,12 +4324,12 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     overflow-x:auto!important;
     overflow-y:hidden!important;
     white-space:nowrap!important;
-    scroll-behavior:smooth!important;
+    scroll-behavior:auto!important;
     scrollbar-width:none!important;
     -ms-overflow-style:none!important;
-    -webkit-overflow-scrolling:touch!important;
-    overscroll-behavior-x:contain!important;
-    touch-action:pan-x pan-y pinch-zoom!important;
+    -webkit-overflow-scrolling:auto!important;
+    overscroll-behavior-x:auto!important;
+    touch-action:auto!important;
   }
   .sx-category-scroll::-webkit-scrollbar{display:none!important}
   .sx-category-scroll .sx-cat-link{
@@ -9752,7 +9752,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
   .cat-nav{overflow:visible}
   .cat-nav-inner{min-width:0}
   .cat-nav-rail{min-width:0;overflow:visible}
-  .cat-nav-scroll{min-width:0;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;touch-action:pan-x}
+  .cat-nav-scroll{min-width:0;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:auto;touch-action:auto}
   .cat-nav-scroll::-webkit-scrollbar{display:none}
   .cat-item{flex:0 0 auto;white-space:nowrap;scroll-snap-align:start}
 
@@ -9766,9 +9766,10 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
       width:100%!important;
       overflow-x:auto!important;
       overflow-y:hidden!important;
-      scroll-snap-type:x proximity;
+      scroll-snap-type:none;
+      scroll-behavior:auto;
       padding:0 42px 0 0!important;
-      -webkit-overflow-scrolling:touch;
+      -webkit-overflow-scrolling:auto;
       mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%);
       -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%);
     }

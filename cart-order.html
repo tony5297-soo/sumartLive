@@ -755,12 +755,12 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     overflow-x:auto!important;
     overflow-y:hidden!important;
     white-space:nowrap!important;
-    scroll-behavior:smooth!important;
+    scroll-behavior:auto!important;
     scrollbar-width:none!important;
     -ms-overflow-style:none!important;
-    -webkit-overflow-scrolling:touch!important;
-    overscroll-behavior-x:contain!important;
-    touch-action:pan-x pan-y pinch-zoom!important;
+    -webkit-overflow-scrolling:auto!important;
+    overscroll-behavior-x:auto!important;
+    touch-action:auto!important;
   }
   .sx-category-scroll::-webkit-scrollbar{display:none!important}
   .sx-category-scroll .sx-cat-link{
@@ -1055,6 +1055,41 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
     }
   }
 </style>
+<script id="sumart-cart-mobile-lite-bootstrap">
+(function(){
+  var mobile=window.matchMedia('(max-width:768px), (pointer:coarse)').matches;
+  window.__SUMART_CART_MOBILE_LITE__=mobile;
+  if(!mobile) return;
+
+  /* The final cart UI already provides bottom navigation and checkout actions.
+     Skip obsolete floating/compare generations that rebuild the DOM at startup. */
+  window.__SUMART_S9_CONNECTED__=true;
+  window.__SUMART_V4132_FLOATING_FIX__=true;
+  window.__SUMART_V501__=true;
+  window.__sumartV378=true;
+  window.__sumartV379=true;
+  window.__SUMART_V380_FEED_MANAGER__=true;
+  window.__SUMART_V381_FLOATING_UX__=true;
+  window.__SUMART_V382_FLOATING__=true;
+
+  function releaseStaleScrollLocks(){
+    var body=document.body;
+    if(!body) return;
+    if(!document.querySelector('.show,.open')) {
+      body.classList.remove(
+        'sx-category-sheet-open','sumart-compare-open','sumart-assistant-open',
+        's2-drawer-open','v375-live-open','v378-feed-open','v379-feed-open',
+        'sumart-v380-feed-open'
+      );
+      body.style.removeProperty('overflow');
+      document.documentElement.style.removeProperty('overflow');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',releaseStaleScrollLocks,{once:true});
+  window.addEventListener('pageshow',releaseStaleScrollLocks);
+})();
+</script>
 </head><body><div class="topbar">🎉 신규회원 <strong>10% 쿠폰</strong> · AI 추천 특가 · 오늘 출발 상품 모음</div><header><div class="header-inner"><a class="logo" href="index.html"><span class="logo-badge">S</span><span>수<span>마트</span></span></a><nav class="nav"><a class="" href="index.html">홈</a><a class="" href="ai-search.html">AI검색</a><a class="" href="product-detail.html">상품상세</a><a class="" href="live.html">LIVE</a><a class="active" href="cart-order.html">장바구니</a><a class="" href="mypage.html">MY</a><a class="" href="admin.html">Admin</a></nav><div aria-label="사용자 메뉴" class="sx-header-actions">
 <a aria-label="찜 목록" class="sx-header-icon" href="wishlist.html">
 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21.3l7.8-7.8 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
@@ -2510,6 +2545,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v5011-floating-dock-fix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function ready(fn){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fn); else fn(); }
   ready(function(){
     document.querySelectorAll('.fab,.sumart-ai-fab,.sumart-v4-floating,.sumart-floating-stack,#sumart-floating-stack,.sumart-s9-floating,.sumart-v4134-float-dock,.v501-floating-dock').forEach(function(el){ el.remove(); });
@@ -2637,6 +2673,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v511-floating-dock-dedupe-hotfix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function removeLegacy(){
     document.querySelectorAll('.sumart-ai-fab,.sumart-s9-floating,.sumart-v4-floating,.sumart-floating-stack,#sumart-floating-stack,.sumart-v4134-float-dock,.fab,button.float-cart,button.scroll-top,button#scrollTopBtn,.scroll-top#scrollTopBtn').forEach(function(el){
       if(!el.closest('.sumart-v5011-dock')) el.remove();
@@ -2695,6 +2732,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v512-assistant-dock-hotfix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function setDockHidden(hidden){
     document.body.classList.toggle('sumart-assistant-open', !!hidden);
     document.querySelectorAll('.sumart-v5011-dock').forEach(function(dock){
@@ -2778,6 +2816,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v514-product-hover-overlap-hotfix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function normalizeProductHover(){
     document.querySelectorAll('.product-card').forEach(function(card){
       var img=card.querySelector('.product-img');
@@ -2852,6 +2891,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v515-product-top-badge-overlap-hotfix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function fixProductBadgeLane(){
     document.querySelectorAll('.product-card').forEach(function(card){
       var img=card.querySelector('.product-img');
@@ -2888,6 +2928,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v516-ai-compare-patch-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function ready(fn){document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn):fn();}
   function toast(msg){var t=document.querySelector('.sumart-v516-toast');if(!t){t=document.createElement('div');t.className='sumart-v516-toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(function(){t.classList.remove('show')},1900)}
   function hideDock(hidden){
@@ -3798,6 +3839,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>\n\n<script id="sumart-v19-safe-product-actions-js">
 (function(){
   'use strict';
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   var CARD_SELECTORS=['.product-card','.deal-card','.rank-card','.ai-product','.compare-card'];
   var MEDIA_SELECTORS=['.prod-img','.product-img','.pimg','.photo','.deal-thumb','.rank-img','.ai-product-img','.story-img'];
   var CONTENT_SELECTORS=['.prod-body','.product-info','.pbody','.card-body','.deal-body','.rank-body','.ai-product-body','.story-body'];
@@ -4073,6 +4115,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 
 <script id="sumart-v375-mobile-overlap-final-fix-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function syncLiveState(){
     var live=document.querySelector('.sumart-x-live-stream');
     document.body.classList.toggle('v375-live-open',!!(live&&live.classList.contains('show')));
@@ -5034,6 +5077,7 @@ body.sx-category-sheet-open .sx-category-sheet{transform:translate(-50%,0)}
 </style>
 <script id="sumart-v51-sprint2-ai-commerce-js">
 (function(){
+  if(window.__SUMART_CART_MOBILE_LITE__) return;
   function ready(fn){document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn):fn();}
   function toast(msg){var t=document.querySelector('.sumart-v51-toast');if(!t){t=document.createElement('div');t.className='sumart-v51-toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(function(){t.classList.remove('show')},2200)}
   function greeting(){var h=new Date().getHours(); if(h<11)return '좋은 아침입니다'; if(h<17)return '좋은 오후입니다'; return '좋은 저녁입니다';}

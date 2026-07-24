@@ -20,12 +20,14 @@ for (const path of ['/cart-order.html', '/mypage.html']) {
       const headerStyle = getComputedStyle(document.querySelector('header'));
       const bodyStyle = getComputedStyle(document.body);
       const reveal = document.querySelector('.v501-reveal');
+      const categoryScroller = document.querySelector('.sx-category-scroll');
 
       window.scrollTo(0, 420);
 
       return {
         backdropFilter: headerStyle.backdropFilter || headerStyle.webkitBackdropFilter,
         bodyOverflowY: bodyStyle.overflowY,
+        categoryTouchAction: categoryScroller ? getComputedStyle(categoryScroller).touchAction : 'auto',
         revealAnimation: reveal ? getComputedStyle(reveal).animationName : 'none',
         scrollY: window.scrollY
       };
@@ -33,6 +35,7 @@ for (const path of ['/cart-order.html', '/mypage.html']) {
 
     expect(mobileStyles.backdropFilter).toBe('none');
     expect(mobileStyles.bodyOverflowY).not.toBe('hidden');
+    expect(mobileStyles.categoryTouchAction).toBe('auto');
     expect(mobileStyles.revealAnimation).toBe('none');
     expect(mobileStyles.scrollY).toBeGreaterThan(0);
     expect(errors, `브라우저 JavaScript 오류: ${errors.join(' | ')}`).toEqual([]);
@@ -42,6 +45,14 @@ for (const path of ['/cart-order.html', '/mypage.html']) {
 test('/cart-order.html 카테고리 영역에서 시작한 세로 스와이프가 페이지를 스크롤한다', async ({ page }) => {
   await page.goto('/cart-order.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => window.scrollTo(0, 0));
+
+  const mobileLiteState = await page.evaluate(() => ({
+    enabled: window.__SUMART_CART_MOBILE_LITE__ === true,
+    legacyNodes: document.querySelectorAll(
+      '.sumart-v516-compare,.sumart-v51-assistant,.sumart-v5011-dock,.v379-ai-launcher'
+    ).length
+  }));
+  expect(mobileLiteState).toEqual({ enabled: true, legacyNodes: 0 });
 
   const categoryScroller = page.locator('.sx-category-scroll').first();
   const box = await categoryScroller.boundingBox();
