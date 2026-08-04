@@ -6,7 +6,7 @@ test.use({
   isMobile: true
 });
 
-for (const path of ['/cart-order.html', '/mypage.html']) {
+for (const path of ['/cart-order.html', '/mypage.html', '/wishlist.html']) {
   test(`${path} 모바일 첫 스크롤이 잠기지 않는다`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -14,7 +14,9 @@ for (const path of ['/cart-order.html', '/mypage.html']) {
     const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
     expect(response?.ok()).toBeTruthy();
 
-    await expect(page.locator('#sumart-mobile-scroll-stability')).toHaveCount(1);
+    await expect(page.locator(
+      '#sumart-mobile-scroll-stability,#sumart-wishlist-mobile-scroll-stability'
+    )).toHaveCount(1);
 
     const mobileStyles = await page.evaluate(() => {
       const headerStyle = getComputedStyle(document.querySelector('header'));
@@ -50,6 +52,48 @@ test('/cart-order.html 카테고리 영역에서 시작한 세로 스와이프�
     enabled: window.__SUMART_CART_MOBILE_LITE__ === true,
     legacyNodes: document.querySelectorAll(
       '.sumart-v516-compare,.sumart-v51-assistant,.sumart-v5011-dock,.v379-ai-launcher'
+    ).length
+  }));
+  expect(mobileLiteState).toEqual({ enabled: true, legacyNodes: 0 });
+
+  const categoryScroller = page.locator('.sx-category-scroll').first();
+  const box = await categoryScroller.boundingBox();
+  expect(box).not.toBeNull();
+
+  const client = await page.context().newCDPSession(page);
+  const x = Math.round(box.x + box.width / 2);
+  const startY = Math.round(box.y + box.height / 2);
+
+  await client.send('Input.dispatchTouchEvent', {
+    type: 'touchStart',
+    touchPoints: [{ x, y: startY, id: 1, radiusX: 3, radiusY: 3, force: 1 }]
+  });
+
+  for (let distance = 30; distance <= 240; distance += 30) {
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x, y: startY - distance, id: 1, radiusX: 3, radiusY: 3, force: 1 }]
+    });
+    await page.waitForTimeout(16);
+  }
+
+  await client.send('Input.dispatchTouchEvent', {
+    type: 'touchEnd',
+    touchPoints: []
+  });
+
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(40);
+});
+
+test('/wishlist.html 카테고리 영역에서 시작한 세로 스와이프가 페이지를 스크롤한다', async ({ page }) => {
+  await page.goto('/wishlist.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => window.scrollTo(0, 0));
+
+  const mobileLiteState = await page.evaluate(() => ({
+    enabled: window.__SUMART_WISHLIST_MOBILE_LITE__ === true,
+    legacyNodes: document.querySelectorAll(
+      '.sumart-v516-compare,.sumart-v51-assistant,.sumart-v5011-dock,' +
+      '.v379-ai-launcher,.sumart-v27-wish-actions'
     ).length
   }));
   expect(mobileLiteState).toEqual({ enabled: true, legacyNodes: 0 });
